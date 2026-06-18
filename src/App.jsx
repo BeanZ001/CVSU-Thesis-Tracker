@@ -17,19 +17,13 @@ export default function App() {
         <NotificationProvider>
           <BrowserRouter>
             <Routes>
-              <Route path="/"        element={<Navigate to="/login" replace />} />
+              <Route path="/"        element={<Navigate to="/dashboard" replace />} />
               <Route path="/login"   element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
-
-              <Route element={<ProtectedRoute />}>
-                <Route path="/dashboard" element={<DashboardPage />} />
-                <Route path="/file/:fileId" element={<PdfViewerPage />} />
-                <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
-                  <Route path="/review/:fileId" element={<PdfReviewPage />} />
-                </Route>
-              </Route>
-
-              <Route path="*" element={<Navigate to="/login" replace />} />
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/file/:fileId" element={<PdfViewerPage />} />
+              <Route path="/review/:fileId" element={<PdfReviewPage />} />
+              <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </BrowserRouter>
         </NotificationProvider>
